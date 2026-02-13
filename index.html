@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine Card</title>
+  <style>
+    /* === Background & page === */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* === Floating hearts === */
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(-45deg);
+      animation: floatUp linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before { top: -50%; left: 0; }
+    .heart::after { top: 0; left: 50%; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+      100% { transform: translateY(-120vh) rotate(-45deg); opacity: 0; }
+    }
+
+    /* === Card styling === */
+    .card {
+      display: flex;
+      align-items: center;
+      max-width: 800px;
+      gap: 20px;
+      z-index: 10;
+      /* Remove background to make transparent */
+      background: transparent;
+    }
+
+    .card-text {
+      flex: 1;
+      color: #fff; /* White text */
+      font-size: 2em;
+      line-height: 1.3em;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5); /* Make text readable */
+    }
+
+    .card img {
+      flex: 1;
+      width: 100%;
+      max-width: 200px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* shadow to make it pop */
+    }
+
+    @media (max-width: 700px) {
+      .card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .card img {
+        max-width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-text">
+      LOVEE YOUU ALWAYSSSS ❤️
+    </div>
+    <img src="WhatsApp Image 2026-02-09 at 19.59.24.jpeg" alt="Valentine Photo">
+  </div>
+
+  <script>
+    // Generate floating hearts
+    for (let i = 0; i < 50; i++) {
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+      heart.style.animationDelay = (-Math.random() * 5) + 's';
+      let size = 10 + Math.random() * 30;
+      heart.style.width = size + 'px';
+      heart.style.height = size + 'px';
+      document.body.appendChild(heart);
+    }
+  </script>
+<audio id="bgMusic" loop autoplay muted>
+  <source src="song1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+const unmute = () => {
+    music.muted = false;
+    document.removeEventListener("click", unmute);
+    document.removeEventListener("touchstart", unmute);
+};
+
+document.addEventListener("click", unmute);
+document.addEventListener("touchstart", unmute);
+</script>
+
+
+</body>
+</html>
